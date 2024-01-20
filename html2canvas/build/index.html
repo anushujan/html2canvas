@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>html2canvas</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body
+    class="flex justify-center items-center w-screen h-screen flex-col gap-5"
+  >
+    <div
+      class="bg-black mx-auto h-[400px] w-[300px] text-white px-5 rounded-lg"
+      id="cxgcard"
+    >
+      <img src="../assets/logohd.png" alt="logo" class="w-[300px]" />
+      <div class="flex flex-col gap-4">
+        <h2 class="uppercase font-bold">codexgreen</h2>
+        <p>Subscribe codexgreen youtube channel</p>
+      </div>
+    </div>
+    <button
+      id="downloadbtn"
+      class="bg-black text-white rounded-md w-[300px] py-2 px-2"
+    >
+      download
+    </button>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script>
+      document.getElementById("downloadbtn").onclick = function () {
+        const card = document.getElementById("cxgcard");
+
+        html2canvas(card).then((canvas) => {
+          const cardURL = canvas.toDataURL("image/png");
+          downloadImage(cardURL, "cxgcard.png");
+        });
+      };
+
+      function downloadImage(dataUrl, fileName) {
+        var anchor = document.createElement("a");
+        anchor.setAttribute("href", dataUrl);
+        anchor.setAttribute("download", fileName);
+        anchor.click();
+        anchor.remove();
+      }
+    </script>
+  </body>
+</html>
